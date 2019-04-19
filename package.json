@@ -9,6 +9,7 @@
   "repository": "https://github.com/Cornchipss/Quick-Github-Downloader",
   "author": "Cornchip",
   "license": "MIT",
+  "keywords": ["github", "downloader"],
   "dependencies": {
     "download-github-repo": "^0.1.4",
     "ncp": "^2.0.0",
