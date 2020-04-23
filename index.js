@@ -11,10 +11,13 @@ const TEMP_FOLDER = 'github-downloader-temp/';
  * @param {string} githubSubdir A subdirectory of this repository to clone (ex: '/' for the root directory, '/download/files/here' to only copy files in that directory)
  * @param {string} outputDir The directory to put the downloaded files into
  */
-module.exports = function(repository, githubSubdir, outputDir)
+module.exports = function(repository, githubSubdir, outputDir, callback)
 {
     download(repository, TEMP_FOLDER, (err) =>
     {
+        if(err)
+            throw err;
+
         rimraf(outputDir, (err) =>
         {
             if(err)
@@ -27,6 +30,9 @@ module.exports = function(repository, githubSubdir, outputDir)
                 if(err)
                     throw err;
                 rimraf.sync(TEMP_FOLDER);
+
+                if(callback)
+                    callback();
             });
         });
     });
